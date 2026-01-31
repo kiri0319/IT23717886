@@ -1,53 +1,83 @@
 const { test, expect } = require('@playwright/test');
 
 const TEST_CASES = [
-  { id: 'Pos_Fun_0001', input: 'eppothum naangal gavanamaaga iruppathu avasiyam', expected: 'எப்போதும் நாங்கள் கவனமாக இருப்பது அவசியம்' },
+  { id: 'Pos_Fun_0001', input: 'Hello eppadi sugamaa irukireengaloo?', expected: 'ஹலோ எப்படி சுகமா இருக்கிறீங்களா?  ' },
 
-  { id: 'Pos_Fun_0002', input: 'nee naalakku kandi poviya?', expected: 'நீ நாளைக்கு கண்டி போவியா?' },
+  { id: 'Pos_Fun_0002', input: 'Naan colombo pogiren.', expected: 'நான் கொழும்பு போகிறேன். ' },
 
-  { id: 'Pos_Fun_0003', input: 'indaiku naan office mudinju sapida poram ', expected: 'இண்டைக்கு நான் ஆபீஸ் முடிஞ்சு சாப்பிட போறம் ' },
+  { id: 'Pos_Fun_0003', input: 'enakku orukka help pannuveengala? ', expected: 'எனக்கு ஒருக்கா ஹெல்ப் பண்ணுவீங்களா? ' },
 
-  { id: 'Pos_Fun_0004', input: 'naan padippen appuram vela seiven', expected: 'நான்  படிப்பேன்  அப்புறம்  வேல  செய்வேன் ' },
+  { id: 'Pos_Fun_0004', input: 'seekiram vaanga pokonum.', expected: 'சீக்கிரம் வாங்க போகனும். ' },
 
-  { id: 'Pos_Fun_0005', input: 'indaiku weather nallaa irukku adhaan naan veliya ponen', expected: 'இண்டைக்கு  வெஅத்தேர்  நல்லா  இருக்கு  அதான்  நான்  வெளிய  போனேன் ' },
+  { id: 'Pos_Fun_0005', input: 'Naan onnum athaii seijelai.', expected: 'நான்  ஒன்னும்  அதை செய்யல' },
 
-  { id: 'Pos_Fun_0006', input: 'Diltan arumai uncle ien makan', expected: 'தில்தான்  அருமை  அங்கிள்  இன்  மகன்  ' },
+  { id: 'Pos_Fun_0006', input: 'naan ippo veetukku pogiren piraku thaan  kovil povan.', expected: 'நான் இப்போ வீட்டுக்கு போகிறேன் பிறகு தான் கோவில் போவேன். ' },
 
-  { id: 'Pos_Fun_0007', input: 'Shiromy romba azhaga irukkaa', expected: 'ஷிரோமி ரொம்ப அழகா இருக்கா' },
+  { id: 'Pos_Fun_0007', input: 'namma sir oodai zoom class inniku irukkaa?', expected: 'நீங்க நாளைக்கு கிளாஸ் வருவீங்களா?' },
 
-  { id: 'Pos_Fun_0008', input: 'Nee eppo assignment submit seiyappogirai?', expected: 'நீ எப்போ அச்சிஞ்மேங்ட் சப்மிட் செய்யப்போகிறாய்?' },
+  { id: 'Pos_Fun_0008', input: 'Nee eppo assignment submit seiyappogirai?', expected: 'நம்ம சார் ஓடை zoom கிளாஸ் இன்னிக்கு இருக்கா?' },
 
-  { id: 'Pos_Fun_0009', input: 'naan maama voda kadalukku poren', expected: 'நான்  மாமா  வோட  கடலுக்கு  போறேன்  ' },
+  { id: 'Pos_Fun_0009', input: ' nallaai paaduvaangal.', expected: ' நல்லாய் பாடுவாங்கள். ' },
 
-  { id: 'Pos_Fun_0010', input: 'Athithya enai nesikum oru anpu sakothari', expected: 'ஆதித்ய  என்னை  நேசிக்கும்  ஒரு  அன்பு  சகோதரி ' },
+  { id: 'Pos_Fun_0010', input: 'naan netru thaan veetukku ponen.', expected: 'நான் நேற்று தான் வீட்டுக்கு போனேன் .' },
 
-  { id: 'Pos_Fun_0011', input: 'naan indaiku oru kadaila saapiden', expected: 'நான்  இண்டைக்கு  ஒரு  கடைல  சாப்பிட்டேன்  ' },
+  { id: 'Pos_Fun_0011', input: 'naan naalaikuu thaan colombo poren.', expected: 'நான் நாளைக்கு தான் கொழும்பு போறேன் .  ' },
 
-  { id: 'Pos_Fun_0012', input: 'Neengal kaalaiyil Eththanai manikku elumbugireergal?', expected: 'நீங்கள் காலையில் எத்தனை மணிக்கு எழும்புகிறீர்கள்?' },
+  { id: 'Pos_Fun_0012', input: 'naan akka oodai australia poka poren.', expected: 'நான் அக்கா ஓடை ஆஸ்திரேலியா போக  போறேன் .' },
 
-  { id: 'Pos_Fun_0013', input: 'konjam help panraiya?', expected: 'கொஞ்சம்  ஹெல்ப்  பண்றியா?' },
+  { id: 'Pos_Fun_0013', input: 'ennaku oru Rs1000 venum annupi viduriyaa?', expected: 'எனக்கு ஒரு Rs1000 வேணும் அனுப்பி விடுறியா ?' },
 
-  { id: 'Pos_Fun_0014', input: 'Avan naalai payanam pogiraan', expected: 'அவன்  நாளை  பயணம்  போகிறான் ' },
+  { id: 'Pos_Fun_0014', input: 'meeting indaikku 10.30am aam.', expected: 'மீட்டிங் இண்டைக்கு 10.30am ஆம் . ' },
 
-  { id: 'Pos_Fun_0015', input: 'Nee enka pora', expected: 'நீ என்க போற' },
+  { id: 'Pos_Fun_0015', input: 'neengal romba romba kastapadureengal.', expected: 'நீங்கள் ரொம்ப ரொம்ப கஷ்டப்படுறீங்கள் .' },
 
-  { id: 'Pos_Fun_0016', input: 'enaku athu vendam', expected: 'எனக்கு  அது  வேண்டாம்   ' },
+  { id: 'Pos_Fun_0016', input: 'naannaalaikuthaanvaruven.', expected: 'நான்நாளைக்குதான்வருவேன் . ' },
 
-  { id: 'Pos_Fun_0017', input: 'indaiku  kapal varukenrathu', expected: 'இண்டைக்கு  கப்பல் வருகின்றது    ' },
+  { id: 'Pos_Fun_0017', input: 'semma da kutty.', expected: 'செம்ம டா குட்டி .    ' },
 
-  { id: 'Pos_Fun_0018', input: 'epdi iruka?', expected: 'எப்படி  இருக்க     ' },
+  { id: 'Pos_Fun_0018', input: 'intha bus nala traffic lai maatiruchuu adhunaala office pogave late aaka pokuthu.', expected: 'இந்த பஸ் நல்ல டிராபிக் லாய் மாட்டிருச்சுவதுனால  ஆபீஸ்  போகவே  லேட்டா  ஆக  போகுது .     ' },
 
-  { id: 'Pos_Fun_0019', input: 'nalaku class Eththanai maniku ', expected: 'நாளைக்கு கிளாஸ் எத்தனை மணிக்கு' },
+  { id: 'Pos_Fun_0019', input: 'naan koviluku pogiren\nneengalum varuveengala? ', expected: 'நான் கோவிலுக்கு போகிறேன் \நீங்களும்  வருவீங்களா?' },
 
-  { id: 'Pos_Fun_0020', input: 'naan oru manavan ', expected: 'நான் ஒரு மாணவன்  ' },
+  { id: 'Pos_Fun_0020', input: 'email orukka anuppi viduvingaloo?', expected: 'ஈமெயில் ஒருக்கா அனுப்பி விடுவிங்களோ ?  ' },
 
-  { id: 'Pos_Fun_0021', input: 'Neenkal eaan epadi pakurenkal? ', expected: 'நீங்கள் ஏன் எப்படி பாக்குறீங்கள்?  ' },
+  { id: 'Pos_Fun_0021', input: 'orukka konjam help pannuveengaloo? ', expected: 'ஒருக்கா கொஞ்சம் ஹெல்ப் பண்ணுவீங்களோ ?  ' },
 
-  { id: 'Pos_Fun_0022', input: 'Saran epovum sapiduvan', expected: 'சரண் எப்போவும் சாப்பிடுவான்  ' },
+  { id: 'Pos_Fun_0022', input: 'sorry ennalai intha porupuu seija eelathu.', expected: 'சொரி என்னால இந்த  பொறுப்புக்கு சேஜை ஏலாது.  ' },
 
-  { id: 'Pos_Fun_0023', input: 'kovil mani kekum ', expected: 'கோவில் மணி கேக்கும்  ' },
+  { id: 'Pos_Fun_0023', input: 'unkadai numberku vanthaa otp aai sollungoo? ', expected: 'உங்கடை numberku வந்தா otp  ஆய் சொல்லுங்கோவ்?  ' },
 
-  { id: 'Pos_Fun_0024', input: 'nalaiku padasalai vedumurai', expected: 'நாளைக்கு பாடசாலை விடுமுறை  ' },
+  { id: 'Pos_Fun_0024', input: 'athaii seija mudiyumaa illaiyaa?', expected: 'அதைஇ சேஜை முடியுமா இல்லையா ?  ' },
+
+  { id: 'Pos_UI_0001', input: 'naan ammama veedai pogiren.', expected: 'நான் அம்மம்மா வீடை போகிறேன் .' },
+
+   { id: 'Neg_Fun_0001', input: 'naannaalaikuthaanvaruven.', expected: 'நான் நாளைக்குத்தான் வருவேன்.' },
+
+  { id: 'Neg_Fun_0002', input: 'naaaaan uniiiiiiiku pooooreeen', expected: 'நான் யூனிவர்சிட்டிக்கு போகிறேன் ' },
+
+  { id: 'Neg_Fun_0003', input: 'naan university ku bus lai poren because traffic romba adhigam', expected: 'நான் யுனிவர்சிட்டிகு பஸ்  லை போறேன்  because  டிராபிக்  ரொம்ப அதிகம்  ' },
+
+  { id: 'Neg_Fun_0004', input: 'romba boreaai irukudaa kavi ', expected: 'ரொம்ப போரீஐ இருக்குடா  கவி  ' },
+
+  { id: 'Neg_Fun_0005', input: 'naen veetuku pogiraen nee piraku vaaaven', expected: 'நான் வீட்டுக்கு போகிறேன்நீ  பிறகு  வாவென் ' },
+
+  { id: 'Neg_Fun_0006', input: 'avan     aai   netru      jaffnalai     kandanan.', expected: 'அவன்      ஆய்    நேற்று       jaffnalai     கண்டனான் .' },
+
+  { id: 'Neg_Fun_0007', input: 'naan university ku pogiren aana weather romba mosama irukuu late aagum pola .', expected: 'நான்  யுனிவர்சிட்டி  கு  போகிறேன் .ஆனா  வெஅத்தேர்  ரொம்ப  மோசமா  இருக்கு லேட்டா  ஆகும்  போல  .' },
+
+  { id: 'Neg_Fun_0008', input: 'amma market ku 10.00 ku pooi varuvanga', expected: 'அம்மா  மார்க்கெட்  கு  10.00 கு  போய் வருவாங்க  .' },
+
+  { id: 'Neg_Fun_0009', input: 'nee eppo srilanka varuvaai', expected: 'நீ  எப்போ  ஸ்ரீலங்கா  வருவாய் ' },
+
+   { id: 'Neg_Fun_0010', input: '', expected: '' },
+
+
+
+
+
+
+
+
 
 
 ];
